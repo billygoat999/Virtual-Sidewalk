@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #2E2E2E; /* Dark Grey background */
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.messages {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 80%;
+  max-width: 600px;
+  font-size: 24px;
+  line-height: 2;
+  animation: scroll 15s linear infinite;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.message {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards, bounce 2s ease-in-out infinite, glow 1.5s ease-in-out infinite alternate;
+  padding: 15px;
+  border-radius: 12px;
+  background: rgba(0, 0, 0, 0.6);
+  font-weight: bold;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.8);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.message:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 1);
+}
+
+.message:nth-child(odd) {
+  background-color: rgba(255, 87, 51, 0.8); /* Fun orange-ish glow for odd messages */
+  color: #fff;
+}
+
+.message:nth-child(even) {
+  background-color: rgba(51, 170, 255, 0.8); /* Fun blue-ish glow for even messages */
+  color: #fff;
+}
+
+.message-form {
+  position: absolute;
+  top: 20px;
+  display: flex;
+  gap: 10px;
+  z-index: 2; /* Keep the input box above the messages */
+}
+
+.message-form input {
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.message-form button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.message-form button:hover {
+  background-color: #45a049;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.3);
+  }
+  100% {
+    text-shadow: 0 0 40px rgba(255, 255, 255, 1), 0 0 60px rgba(255, 255, 255, 0.8);
+  }
+}
